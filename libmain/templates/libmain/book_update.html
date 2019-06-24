@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}
+  Update Book
+{% endblock %}
+
+{% block content %}
+  <div class="col-4">
+    <h1>Book "{{book}}" Update Form</h1>
+    <form method="post">
+      {% csrf_token %}
+      {{form}}
+      <button type="submit" class="btn btn-primary mt-3">Update book</button>
+    </form>
+  </div>
+{% endblock %}

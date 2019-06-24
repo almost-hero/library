@@ -9,7 +9,7 @@
     {% if user.book_set.all%}
       {% for book in user.book_set.all %}
       <div class="list-group">
-        <a href="#" class="list-group-item list-group-item-action m-1">{{book}}</a>
+        <a href="{% url 'book_update_url' id=user.id slug=book.slug %}" class="list-group-item list-group-item-action m-1">{{book}}</a>
       </div>
       {% endfor %}
     {% else %}
