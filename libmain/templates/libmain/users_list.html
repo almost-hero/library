@@ -3,3 +3,22 @@
 {% block title %}
   Users List
 {% endblock %}
+
+{% block content %}
+  <div class="col-4">
+    <h1>Users:</h1>
+    {% for user in users %}
+    <div class="list-group">
+      <a href="#" class="list-group-item list-group-item-action m-1">{{user}}</a>
+    </div>
+    {% endfor %}
+    <div class="form-group mt-3">
+      <h2>Add new user</h2>
+      <form method="post" class="">
+        {% csrf_token %}
+        {{form}}
+        <button type="submit" name="button" class="btn btn-primary mt-3">Add User</button>
+      </form>
+    </div>
+  </div>
+{% endblock %}
