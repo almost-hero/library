@@ -14,3 +14,12 @@ def users_list(request):
         user.save()
         new_user = authenticate(username = user.username, password= password)
     return render(request,'libmain/users_list.html',{'users':users,'form':form})
+
+def user_detail(request,id):
+    user = User.objects.get(id=id)
+    form = AddBook(request.POST or None)
+    if form.is_valid():
+        book = form.save(commit=False)
+        book.user = user
+        book.save()
+    return render(request,'libmain/user_detail.html',{'user':user,'form':form})

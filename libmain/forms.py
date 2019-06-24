@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
+from .models import Book
 
 class AddUser(forms.ModelForm):
 
@@ -20,3 +21,15 @@ class AddUser(forms.ModelForm):
         if username_qs.exists():
             raise forms.ValidationError('This username is already exist')
         return username
+
+class AddBook(forms.ModelForm):
+    class Meta:
+        model = Book
+        fields = ['title','slug','author','date']
+        widgets = {
+                'title':forms.TextInput(attrs={'class':'form-control','type':'text','placeholder':'Add book title'}),
+                'slug':forms.TextInput(attrs={'class':'form-control','type':'text','placeholder':'Add book slug'}),
+                'author':forms.TextInput(attrs={'class':'form-control','type':'text','placeholder':'Add book author'}),
+                'date':forms.TextInput(attrs={'class':'form-control','type':'text','placeholder':'Add book date'}),
+
+        }
