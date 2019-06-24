@@ -10,11 +10,9 @@ class AddUser(forms.ModelForm):
         'class':'form-control','type':'password','placeholder':'Password'
     }))
 
-
     class Meta:
         model = User
         fields = ['username','password']
-
 
     def clean_username(self):
         username = self.cleaned_data.get('username')
