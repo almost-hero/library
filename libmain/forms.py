@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from .models import Book
+import datetime
 
 class AddUser(forms.ModelForm):
 
@@ -33,3 +34,8 @@ class AddBook(forms.ModelForm):
                 'date':forms.TextInput(attrs={'class':'form-control','type':'text','placeholder':'Add book date'}),
 
         }
+    def clean_date(self):
+        date = self.cleaned_data.get('date')
+        if int(date) > datetime.date.today().year:
+            raise forms.ValidationError('This book cannot be released yet')
+        return date
